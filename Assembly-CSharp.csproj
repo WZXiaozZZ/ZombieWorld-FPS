@@ -56,19 +56,19 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Base\Enemy\EnemyRunState.cs" />
+    <Compile Include="Assets\CountrySide\Gaia Extention\PolyPixel_Countryside.cs" />
+    <Compile Include="Assets\Scripts\Base\Player.cs" />
+    <Compile Include="Assets\Scripts\Attack\PlayerShot.cs" />
+    <Compile Include="Assets\Scripts\Base\Enemy\EnemyFSMSystem.cs" />
+    <Compile Include="Assets\Scripts\Datas\Defines.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\Base\Enemy\EnemyFSMState.cs" />
+    <Compile Include="Assets\Scripts\Base\Enemy\EnemyPatrolState.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Attack\WeaponMessageData.cs" />
     <Compile Include="Assets\Scripts\Base\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
-    <Compile Include="Assets\Scripts\Attack\WeaponMessageData.cs" />
-    <Compile Include="Assets\Scripts\Weapon\Weapon.cs" />
-    <Compile Include="Assets\Scripts\Attack\PlayerShot.cs" />
-    <Compile Include="Assets\Scripts\Base\Enemy\EnemyFSMState.cs" />
-    <Compile Include="Assets\Scripts\Base\Enemy\EnemyRunState.cs" />
-    <Compile Include="Assets\Scripts\Base\Player.cs" />
-    <Compile Include="Assets\Scripts\Base\Enemy\EnemyPatrolState.cs" />
-    <Compile Include="Assets\Scripts\Datas\Defines.cs" />
-    <Compile Include="Assets\CountrySide\Gaia Extention\PolyPixel_Countryside.cs" />
-    <Compile Include="Assets\Scripts\Base\Enemy\EnemyFSMSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
