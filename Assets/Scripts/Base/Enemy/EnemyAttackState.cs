@@ -31,7 +31,7 @@ public class EnemyAttackState : EnemyFSMState
         timer += Time.fixedDeltaTime;
         if (timer > 1.2f&& !isAttack)
         {
-            if ((Player.Instance.transform.position - system.manager.transform.position).magnitude < 4f)
+            if ((Player.Instance.transform.position - system.manager.transform.position).magnitude < 6f)
             {
                 isAttack = true;
                 Player.Instance.Damage(30);

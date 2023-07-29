@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{511FA2CF-70FB-3D7D-FD0C-3DE8D049ACCC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -57,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Base\Enemy\EnemyRunState.cs" />
-    <Compile Include="Assets\CountrySide\Gaia Extention\PolyPixel_Countryside.cs" />
     <Compile Include="Assets\Scripts\Base\Player.cs" />
     <Compile Include="Assets\Scripts\Attack\PlayerShot.cs" />
     <Compile Include="Assets\Scripts\Base\Enemy\EnemyFSMSystem.cs" />

@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     [SerializeField]private int hp;
     public int HP { get { return hp; } }
     public CanvasGroup bloodImage;
+    private bool isDeath;
     public void Awake()
     {
         _instance = this;
@@ -54,6 +55,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDeath)
+            return;
         float _horizontal = Input.GetAxis("Horizontal");
         float _vertical = Input.GetAxis("Vertical");
         
@@ -117,6 +120,16 @@ public class Player : MonoBehaviour
     {
         hp -= value;
         bloodImage.alpha= (1.0f -(float)((float)hp / (float)maxHP))/1.2f;
+        if (hp <= 0)
+        {
+            Death();
+        }
+    }
+    public void Death() 
+    {
+        isDeath = true;
+        animator.SetBool("death", true);
+        
     }
 
 }

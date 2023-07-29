@@ -226,7 +226,7 @@ MonoBehaviour:
   patrolTramsform: {fileID: 447097078074368121}
   traceDistance: 5
   animator: {fileID: 447097076146199387}
-  startRunDistance: 25
+  startRunDistance: 30
   isAttacked: 0
 --- !u!54 &447097077688799515
 Rigidbody:
@@ -300,7 +300,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.924
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -24,11 +24,13 @@ public class EnemyRunState : EnemyFSMState
 
     public override void StateUpdate()
     {
-        if ((Player.Instance.transform.position - system.manager.transform.position).magnitude < 4f)
+        if ((Player.Instance.transform.position - system.manager.transform.position).magnitude < 5f)
         {
             system.PerformTransition(Enemy_Transition.Attack);
         }
         system.manager.Move(Player.Instance.transform.position);
+
+        system.manager.PlayMusic(MusicName.Walk);
     }
 
 }
