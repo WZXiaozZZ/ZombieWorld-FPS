@@ -11,7 +11,7 @@ public enum MusicName
 [System.Serializable]
 public struct MusicType
 {
-    public AudioClip musckClip;
+    public AudioClip musicClip;
     public MusicName musicName;
     [Range(0f, 1f)] public float volume;
 }
@@ -52,7 +52,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayPlayerMusic(MusicName name)
     {
-        PlayerSource.clip = musicDictionary[name].musckClip;
+        PlayerSource.clip = musicDictionary[name].musicClip;
         if (!PlayerSource.isPlaying)
         {
             PlayerSource.volume = musicDictionary[name].volume;
@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayMusicFX(MusicName name)
     {
-        FXSource.clip = musicDictionary[name].musckClip;
+        FXSource.clip = musicDictionary[name].musicClip;
         if (!FXSource.isPlaying)
         {
             FXSource.volume = musicDictionary[name].volume;
@@ -72,7 +72,7 @@ public class AudioManager : MonoBehaviour
     public void PlayOneShotMusicFX(MusicName name)
     {
         FXSource.volume = musicDictionary[name].volume;
-        FXSource.PlayOneShot(musicDictionary[name].musckClip);
+        FXSource.PlayOneShot(musicDictionary[name].musicClip);
     }
 
     public void StopPlayerMusic() 

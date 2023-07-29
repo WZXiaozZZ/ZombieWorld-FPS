@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -33,10 +34,14 @@ public class Player : MonoBehaviour
     [SerializeField]private Animator animator;
     private static Player _instance;
     public static Player Instance { get { return _instance; } }
-
+    [SerializeField]private int maxHP=100;
+    [SerializeField]private int hp;
+    public int HP { get { return hp; } }
+    public CanvasGroup bloodImage;
     public void Awake()
     {
         _instance = this;
+        hp = maxHP;
     }
 
     // Use this for initialization
@@ -107,4 +112,11 @@ public class Player : MonoBehaviour
     {
         animator.SetBool(name, isTure);
     }
+
+    public void Damage(int value) 
+    {
+        hp -= value;
+        bloodImage.alpha= (1.0f -(float)((float)hp / (float)maxHP))/1.2f;
+    }
+
 }

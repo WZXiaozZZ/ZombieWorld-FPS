@@ -44,6 +44,9 @@ public class EnemyManager : MonoBehaviour
         EnemyFSMState runState = new EnemyRunState();
         fsmSystem.AddState(runState);
         runState.system = fsmSystem;
+        EnemyFSMState attackState = new EnemyAttackState();
+        fsmSystem.AddState(attackState);
+        attackState.system = fsmSystem;
         foreach (var item in MusicType)
         {
             keyValuePairs.Add(item.musicName, item);
@@ -62,6 +65,7 @@ public class EnemyManager : MonoBehaviour
                 currSpeed = walkSpeed;
                 break;
             case Enemy_StateID.Attack:
+                currSpeed = 0;
                 break;
             case Enemy_StateID.Run:
                 currSpeed = runSpeed;
@@ -117,7 +121,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (!AudioSource.isPlaying)
         {
-            AudioSource.clip = keyValuePairs[musicName].musckClip;
+            AudioSource.clip = keyValuePairs[musicName].musicClip;
             AudioSource.Play();
         }
     }

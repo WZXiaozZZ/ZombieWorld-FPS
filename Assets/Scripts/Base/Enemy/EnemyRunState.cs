@@ -8,6 +8,7 @@ public class EnemyRunState : EnemyFSMState
     {
         stateID = Enemy_StateID.Run;
         AddTransition(Enemy_Transition.Idle, Enemy_StateID.Idle);
+        AddTransition(Enemy_Transition.Attack, Enemy_StateID.Attack);
         AddTransition(Enemy_Transition.Patrol, Enemy_StateID.Patrol);
     }
 
@@ -23,6 +24,10 @@ public class EnemyRunState : EnemyFSMState
 
     public override void StateUpdate()
     {
+        if ((Player.Instance.transform.position - system.manager.transform.position).magnitude < 4f)
+        {
+            system.PerformTransition(Enemy_Transition.Attack);
+        }
         system.manager.Move(Player.Instance.transform.position);
     }
 
