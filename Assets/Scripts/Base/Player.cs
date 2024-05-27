@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     [SerializeField]private int hp;
     public int HP { get { return hp; } }
     public CanvasGroup bloodImage;
+    [SerializeField] private Slider hpSlider;
     private bool isDeath;
     public void Awake()
     {
@@ -120,6 +121,7 @@ public class Player : MonoBehaviour
     {
         hp -= value;
         bloodImage.alpha= (1.0f -(float)((float)hp / (float)maxHP))/1.2f;
+        hpSlider.value= (float)((float)hp / (float)maxHP) ;
         if (hp <= 0)
         {
             Death();
