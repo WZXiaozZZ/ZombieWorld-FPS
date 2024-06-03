@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
+
 public enum WeaponName
 {
     Rifle01,
@@ -39,6 +41,7 @@ public class PlayerShot : MonoBehaviour
             weaponDatas[currWeaponID].data.currentBulletNumber--;
             StartCoroutine(ReadyShot(weaponDatas[currWeaponID].data.ShootSpeed));
             AudioManager.Instance.PlayOneShotMusicFX(weaponDatas[currWeaponID].data.MusicName);
+            UIManager.Instance.SetUIPlane(UIType.GunBulletNumber, weaponDatas[currWeaponID].data.currentBulletNumber, weaponDatas[currWeaponID].data.reserveNumber);
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
