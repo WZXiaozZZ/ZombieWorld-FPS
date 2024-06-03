@@ -8,6 +8,10 @@ public static class Defines
     public const string WalkAnimationClip = "walk";
     public const string RunAnimationClip = "run";
     public const string AttackAnimationClip = "attack";
+    public const string ReLoadClip = "reload";
 
     public const string EnemyTag="Enemy";
+
+    public const int gameScene = 1;
+    public const int startScene= 0;
 }

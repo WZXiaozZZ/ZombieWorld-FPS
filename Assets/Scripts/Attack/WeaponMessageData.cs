@@ -12,4 +12,7 @@ public class WeaponMessageData : ScriptableObject
     [SerializeField]private GameObject prefabs;
     public GameObject Prefabs { get { return prefabs; } }
     public MusicName MusicName;
+    public int currentBulletNumber;
+    public int maxBulletNumber;
+    public int reserveNumber;
 }

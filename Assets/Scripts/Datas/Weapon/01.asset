@@ -16,3 +16,6 @@ MonoBehaviour:
   hurt: 10
   prefabs: {fileID: 2484874996135249010, guid: f0390e02342e7fd41b661a27352da1de, type: 3}
   MusicName: 2
+  currentBulletNumber: 30
+  maxBulletNumber: 30
+  reserveNumber: 150
