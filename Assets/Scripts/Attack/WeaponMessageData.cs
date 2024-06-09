@@ -15,4 +15,5 @@ public class WeaponMessageData : ScriptableObject
     public int currentBulletNumber;
     public int maxBulletNumber;
     public int reserveNumber;
+    public float RecoilAmount;
 }

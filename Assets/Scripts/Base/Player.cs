@@ -99,14 +99,15 @@ public class Player : MonoBehaviour
         direction.y -= gravity * Time.deltaTime;
         playerController.Move(playerController.transform.TransformDirection(direction * Time.deltaTime * currSpeed));
 
-
-
         RotationX += agretctCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mousespeed;
         RotationY -= Input.GetAxis("Mouse Y") * mousespeed;
         RotationY = Mathf.Clamp(RotationY, minmouseY, maxmouseY);
         this.transform.eulerAngles = new Vector3(0, RotationX, 0);
         agretctCamera.transform.eulerAngles = new Vector3(RotationY, RotationX, 0);
     }
+
+ 
+ 
 
     public void TriggerAnimator(string name) 
     {
