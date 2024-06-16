@@ -11,6 +11,7 @@ public static class Defines
     public const string ReLoadClip = "reload";
 
     public const string EnemyTag="Enemy";
+    public const string PlayerTag="Player";
 
     public const int gameScene = 1;
     public const int startScene= 0;

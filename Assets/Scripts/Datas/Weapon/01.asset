@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 01
   m_EditorClassIdentifier: 
   shootSpeed: 0.3
-  hurt: 10
+  hurt: 12
   prefabs: {fileID: 2484874996135249010, guid: f0390e02342e7fd41b661a27352da1de, type: 3}
   MusicName: 2
-  currentBulletNumber: 26
-  maxBulletNumber: 30
-  reserveNumber: 114
   RecoilAmount: 1
+  shotMusic: 2
+  reLoadMusic: 4
+  reLoadTime: 1

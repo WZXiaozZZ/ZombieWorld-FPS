@@ -12,8 +12,11 @@ public class WeaponMessageData : ScriptableObject
     [SerializeField]private GameObject prefabs;
     public GameObject Prefabs { get { return prefabs; } }
     public MusicName MusicName;
-    public int currentBulletNumber;
-    public int maxBulletNumber;
-    public int reserveNumber;
     public float RecoilAmount;
+    [SerializeField] private MusicName shotMusic;
+    public MusicName ShotMusic { get { return shotMusic; } }
+    [SerializeField] private MusicName reLoadMusic;
+    public MusicName ReLoadMusic { get { return reLoadMusic; } }
+    [SerializeField]private float reLoadTime = 2.0f;
+    public float ReLoadTime { get { return reLoadTime; } }
 }

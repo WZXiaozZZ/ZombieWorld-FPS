@@ -7,6 +7,10 @@ public enum MusicName
     Walk,
     Run,
     Rifle_01,
+    Death,
+    Reload,
+    Reload02,
+    Attack,
 }
 [System.Serializable]
 public struct MusicType
@@ -61,9 +65,9 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayMusicFX(MusicName name)
     {
-        FXSource.clip = musicDictionary[name].musicClip;
         if (!FXSource.isPlaying)
         {
+            FXSource.clip = musicDictionary[name].musicClip;
             FXSource.volume = musicDictionary[name].volume;
             FXSource.Play();
         }

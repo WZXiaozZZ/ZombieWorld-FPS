@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee84621fd37112d4d9bd909bb7a0b865, type: 3}
+  m_Name: 03
+  m_EditorClassIdentifier: 
+  shootSpeed: 0.5
+  hurt: 10
+  prefabs: {fileID: 8845565489863243874, guid: 4f702631da701ed4b8fd1374eff477b4, type: 3}
+  MusicName: 2
+  RecoilAmount: 3
+  shotMusic: 2
+  reLoadMusic: 5
+  reLoadTime: 2.5

@@ -94,16 +94,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MusicType:
-  - musicClip: {fileID: 8300000, guid: 953bfe2d49d21644fba858951f1d375d, type: 3}
+  - musicClip: {fileID: 8300000, guid: 4ee178fafde983b45a033a82d3a42227, type: 3}
     musicName: 0
+    volume: 1
+  - musicClip: {fileID: 8300000, guid: 55fbd3e986619f641a9a8a42722cb514, type: 3}
+    musicName: 6
     volume: 1
   runSpeed: 4
   walkSpeed: 2
   patrolTramsform: {fileID: 6662997740932312998}
   traceDistance: 5
   animator: {fileID: 5604334732862961433}
-  startRunDistance: 30
+  startRunDistance: 1000
+  hp: 50
   isAttacked: 0
+  score: 15
+  attackRange: 2
+  canDamageRange: 4
+  atk: 30
 --- !u!54 &6662997740252651204
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,8 +140,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 1.6
+  m_Volume: 0.769
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -141,7 +149,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 1000
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

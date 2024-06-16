@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Player : MonoBehaviour
 {
@@ -40,10 +41,13 @@ public class Player : MonoBehaviour
     public CanvasGroup bloodImage;
     [SerializeField] private Slider hpSlider;
     private bool isDeath;
+    public bool IsDeath { get { return isDeath; } }
+    private PlayerShot playerShot;
     public void Awake()
     {
         _instance = this;
         hp = maxHP;
+        playerShot = GetComponent<PlayerShot>();
     }
 
     // Use this for initialization
@@ -51,12 +55,24 @@ public class Player : MonoBehaviour
     {
         playerController = this.GetComponent<CharacterController>();
         currSpeed = walkSpeed;
+        StartCoroutine(WaitHPAdd());
     }
+
+    IEnumerator WaitHPAdd() 
+    {
+        float waitTime = 10;
+        while (true)
+        {
+            yield return new WaitForSeconds(waitTime);
+            AddHP(GameManager.Instance.Attribute.HealthRegenRateLevel);
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (isDeath)
+        if (isDeath||GameManager.Instance.IsStopGame||Time.timeScale==0)
             return;
         float _horizontal = Input.GetAxis("Horizontal");
         float _vertical = Input.GetAxis("Vertical");
@@ -106,8 +122,49 @@ public class Player : MonoBehaviour
         agretctCamera.transform.eulerAngles = new Vector3(RotationY, RotationX, 0);
     }
 
- 
- 
+    public void ChangeGun(GunManager gunManager) 
+    {
+        Debug.Log("我切换了动画器名称为:" + gunManager.Gun_Animator.name);
+        animator = gunManager.Gun_Animator;
+    }
+
+    public void AddBullet(int value) 
+    {
+        playerShot.GunManager.AddBullet(value);
+    }
+
+    public void AddMaxHP() 
+    {
+        hp += 50;
+        maxHP += 50;
+        hp=Mathf.Max(maxHP, hp);
+        hp = Mathf.Clamp(hp, 0, maxHP);
+        bloodImage.alpha = (1.0f - (float)((float)hp / (float)maxHP)) / 1.2f;
+        hpSlider.value = (float)((float)hp / (float)maxHP);
+    }
+
+    public void AddHP(int value) 
+    {
+        hp += value;
+        hp=Mathf.Clamp(hp, 0, maxHP);
+        bloodImage.alpha = (1.0f - (float)((float)hp / (float)maxHP)) / 1.2f;
+        hpSlider.value = (float)((float)hp / (float)maxHP);
+    }
+    public void MovespeedLevelUpgrades() 
+    {
+        walkSpeed += 0.2f;
+        runSpeed += 0.2f;
+
+    }
+    public void SetAutoLevel(int level) 
+    {
+        playerShot.SetAutoLevel(level);
+    }
+
+    public void AddWeapon() 
+    {
+        playerShot.AddWeapon();
+    }
 
     public void TriggerAnimator(string name) 
     {
@@ -120,9 +177,14 @@ public class Player : MonoBehaviour
 
     public void Damage(int value) 
     {
+        if (isDeath)
+            return;
+        value -= GameManager.Instance.Attribute.Defense;
+        value = Mathf.Clamp(value, 0, 1000);
         hp -= value;
         bloodImage.alpha= (1.0f -(float)((float)hp / (float)maxHP))/1.2f;
         hpSlider.value= (float)((float)hp / (float)maxHP) ;
+        AudioManager.Instance.PlayOneShotMusicFX(MusicName.Death);
         if (hp <= 0)
         {
             Death();
@@ -132,7 +194,7 @@ public class Player : MonoBehaviour
     {
         isDeath = true;
         animator.SetBool("death", true);
-        
+        GameManager.Instance.GameOver();
     }
 
 }

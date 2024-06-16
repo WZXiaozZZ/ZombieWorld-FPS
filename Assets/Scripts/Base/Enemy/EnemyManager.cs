@@ -8,9 +8,9 @@ public class EnemyManager : MonoBehaviour
     public MusicType[] MusicType;
     private Dictionary<MusicName, MusicType> keyValuePairs = new Dictionary<MusicName, MusicType>();
     private float currSpeed = 2;
-    [SerializeField]private float runSpeed = 4;
+    [SerializeField] private float runSpeed = 4;
     public float RunSpeed { get { return runSpeed; } }
-    [SerializeField]private float walkSpeed = 2;
+    [SerializeField] private float walkSpeed = 2;
     public float WalkSpeed { get { return walkSpeed; } }
     private EnemyFSMSystem fsmSystem;
     [SerializeField] private Transform patrolTramsform;
@@ -22,11 +22,20 @@ public class EnemyManager : MonoBehaviour
     private int currPatrolPoint = 0;
     public Animator animator;
     private AudioSource AudioSource;
-    [SerializeField] private float startRunDistance=10;
-    private int hp=100;
+    [SerializeField] private float startRunDistance = 10;
+    [SerializeField]private int hp = 100;
     public int HP { get { return hp; } }
     private bool isDeath;
     public bool isAttacked = false;
+    private bool isStop;
+    [SerializeField] private int score = 1;
+    public int exp { get { return score; } }
+    [SerializeField] private float attackRange = 3f;
+    public float AttackRange { get { return attackRange; } }
+    [SerializeField] private float canDamageRange = 4f;
+    public float CanDamageRange { get { return canDamageRange; } }
+    [SerializeField] private int atk=30;
+    public int Atk { get { return atk; } }
     public void Awake()
     {
         currSpeed = walkSpeed;
@@ -53,7 +62,14 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void ChangeSpeed(Enemy_StateID _StateID) 
+    public void AddAttribute(int hp,float speed,int atk) 
+    {
+        runSpeed += speed;
+        this.hp += hp;
+        this.atk += atk;
+    }
+
+    public void ChangeSpeed(Enemy_StateID _StateID)
     {
         switch (_StateID)
         {
@@ -77,14 +93,14 @@ public class EnemyManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDeath)
+        if (isDeath || isStop)
             return;
         if (fsmSystem != null)
         {
             fsmSystem.CurrentState.StateUpdate();
         }
     }
-    public void Damage(int value) 
+    public void Damage(int value)
     {
         hp -= value;
         isAttacked = true;
@@ -92,12 +108,19 @@ public class EnemyManager : MonoBehaviour
             Death();
     }
 
-    public void Death() 
+    public void IsStop(bool value)
+    {
+        isStop = value;
+    }
+
+    public void Death()
     {
         animator.SetTrigger("death");
         GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         isDeath = true;
+        GameManager.Instance.RemoveEnemyManager(this);
+        Destroy(gameObject, 10f);
     }
     public bool Patrol()
     {
@@ -117,7 +140,7 @@ public class EnemyManager : MonoBehaviour
         return false;
     }
 
-    public void PlayMusic(MusicName musicName) 
+    public void PlayMusic(MusicName musicName)
     {
         if (!AudioSource.isPlaying)
         {
@@ -125,7 +148,10 @@ public class EnemyManager : MonoBehaviour
             AudioSource.Play();
         }
     }
-
+    public void ShotMusic(MusicName musicName)
+    {
+        AudioSource.PlayOneShot( keyValuePairs[musicName].musicClip);
+    }
     public void Move(Vector3 value)
     {
         value.y = transform.position.y;

@@ -23,18 +23,24 @@ public class EnemyAttackState : EnemyFSMState
     {
         timer = 0;
         isAttack = false;
+        isPlayAttackMusic = false;
         system.manager.animator.SetBool(Defines.AttackAnimationClip, false);
     }
-
+    private bool isPlayAttackMusic;
     public override void StateUpdate()
     {
         timer += Time.fixedDeltaTime;
         if (timer > 1.2f&& !isAttack)
         {
-            if ((Player.Instance.transform.position - system.manager.transform.position).magnitude < 6f)
+            if (!isPlayAttackMusic)
+            {
+                system.manager.ShotMusic(MusicName.Attack);
+                isPlayAttackMusic = true;
+            }
+            if ((Player.Instance.transform.position - system.manager.transform.position).magnitude < system.manager.CanDamageRange)
             {
                 isAttack = true;
-                Player.Instance.Damage(30);
+                Player.Instance.Damage(system.manager.Atk);
             }
             
         }//system.manager.PlayMusic(MusicName.Walk);

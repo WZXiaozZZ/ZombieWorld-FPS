@@ -24,7 +24,7 @@ public class EnemyRunState : EnemyFSMState
 
     public override void StateUpdate()
     {
-        if ((Player.Instance.transform.position - system.manager.transform.position).magnitude < 5f)
+        if ((Player.Instance.transform.position - system.manager.transform.position).magnitude < system.manager.AttackRange)
         {
             system.PerformTransition(Enemy_Transition.Attack);
         }
