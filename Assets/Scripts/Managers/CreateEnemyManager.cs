@@ -45,7 +45,7 @@ public class CreateEnemyManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(15f);
+            yield return new WaitForSeconds(5f);
             upgradesLevel++;
 
         }
@@ -59,7 +59,7 @@ public class CreateEnemyManager : MonoBehaviour
             int range = Random.Range(0, createPos.Length);
             GameObject obj= Instantiate(data.enemy, createPos[range].position, createPos[range].rotation);
             EnemyManager enemyManager = obj.GetComponentInChildren<EnemyManager>();
-            enemyManager.AddAttribute(upgradesLevel*2 , upgradesLevel/10f, upgradesLevel/3);
+            enemyManager.AddAttribute(upgradesLevel*5+GameManager.Instance.CurrentGameLevel*200, upgradesLevel/30f, upgradesLevel/30);
             GameManager.Instance.AddEnemyManager(enemyManager);
         }
     }

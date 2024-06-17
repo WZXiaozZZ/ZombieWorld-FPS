@@ -235,9 +235,9 @@ MonoBehaviour:
   startRunDistance: 1000
   hp: 100
   isAttacked: 0
-  score: 30
+  score: 50
   attackRange: 3
-  canDamageRange: 4
+  canDamageRange: 4.5
   atk: 30
 --- !u!54 &447097077688799515
 Rigidbody:

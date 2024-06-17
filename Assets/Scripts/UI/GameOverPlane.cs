@@ -15,7 +15,7 @@ public class GameOverPlane : MonoBehaviour
     {
         againBtn.onClick.AddListener(Again);
         exitBtn.onClick.AddListener(ExitGame);
-        gameTIme_Text.text = ((int)GameManager.Instance.GameTIme).ToString();
+        gameTIme_Text.text = "";
     }
 
     public void Again() 

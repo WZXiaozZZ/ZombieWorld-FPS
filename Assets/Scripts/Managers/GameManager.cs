@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public float GameTIme { get { return currentGameTIme; } }
 
     private int exp = 0;
-    [SerializeField] private TMP_Text gameTimeText;
+    [SerializeField] private TMP_Text playerLevelText;
     [SerializeField] private TMP_Text scoreText;
 
     [SerializeField] private List<EnemyManager> enemyManagers = new List<EnemyManager>();
@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject upgradesPlane;
     [SerializeField] private GameObject gameOverUI;
     private int currentLevel;
+    [SerializeField] private float intervalLevel=240f;
+    private float levelTimer = 0;
+    [SerializeField] private TMP_Text gameLevelText;
+    private int currentGameLevel = 1;
+    public int CurrentGameLevel { get { return currentGameLevel; } }
+    [SerializeField] private GameObject warningPlane;
     public void Awake()
     {
         Time.timeScale = 1;
@@ -52,8 +58,29 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        currentGameTIme += Time.fixedDeltaTime;
-        gameTimeText.text = ((int)currentGameTIme).ToString();
+        if (Time.timeScale == 0)
+            return;
+        levelTimer += Time.fixedDeltaTime;
+        if (levelTimer > intervalLevel)
+        {
+            currentGameLevel++;
+            if (currentGameLevel >= 4)
+            {
+                GameOver();
+                return;
+            }
+            foreach (var item in enemyManagers)
+            {
+                item.AddHP(200);
+            }
+            warningPlane.SetActive(true);
+            levelTimer = 0;
+            gameLevelText.text ="Level  "+currentGameLevel.ToString();
+        }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            UIManager.Instance.OpenUIPlane(UIType.Pause);
+        }
     }
 
     public void AddEnemyManager(EnemyManager enemyManager)
@@ -65,14 +92,13 @@ public class GameManager : MonoBehaviour
     {
         enemyManagers.Remove(enemyManager);
         exp += enemyManager.exp;
-
-        if (exp - 100 >= 0)
+        if (exp - 50 >= 0)
         {
             level++;
-            exp -= 100;
+            exp -= 50;
             Upgrades();
         }
-        scoreText.text = exp + "/100";
+        scoreText.text = exp + "/50";
 
     }
 
@@ -85,6 +111,7 @@ public class GameManager : MonoBehaviour
     public void Upgrades()
     {
         currentLevel++;
+        playerLevelText.text = currentLevel.ToString();
         Instantiate(upgradesPlane, GameObject.Find("Canvas").transform);
         Time.timeScale = 0;
         if (currentLevel % 5 == 0)

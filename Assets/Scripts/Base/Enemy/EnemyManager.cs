@@ -62,6 +62,11 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void AddHP(int hp) 
+    {
+        this.hp += hp;
+    }
+
     public void AddAttribute(int hp,float speed,int atk) 
     {
         runSpeed += speed;
@@ -162,5 +167,14 @@ public class EnemyManager : MonoBehaviour
 
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
     }
+    public void AttackMove(Vector3 value)
+    {
+        value.y = transform.position.y;
+        transform.position = Vector3.MoveTowards(transform.position, value, walkSpeed/2 * Time.fixedDeltaTime);
+        Vector3 targetDirection = value - transform.position;
 
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+    }
 }

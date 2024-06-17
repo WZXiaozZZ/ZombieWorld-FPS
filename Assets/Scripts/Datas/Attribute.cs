@@ -40,6 +40,9 @@ public class Attribute
     public int Defense { get { return defense; } set { defense += value; } }
     private int autoAmmoRegenerationLevel;
     public int AutoAmmoRegenerationLevel { get { return autoAmmoRegenerationLevel; } }
+
+    private int playerLevel = 0;
+    
     public Attribute(int speedLevel,int hpLevel,int atkLevel,int rateOfFireLevel,int replenishmentDropRateLevel,int lifestealLevel,int healthRegenRateLevel ,int defense,int autoAmmoRegenerationLevel) 
     {
         this.speedLevel = speedLevel;

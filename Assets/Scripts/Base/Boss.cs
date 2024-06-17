@@ -72,7 +72,7 @@ public class Boss : MonoBehaviour
 
     IEnumerator WaitAttackOver()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         isAttacking = false;
         isAttackOver = false;
         animator.SetBool("attack", false);

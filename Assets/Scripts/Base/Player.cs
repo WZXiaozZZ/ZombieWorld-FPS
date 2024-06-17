@@ -124,7 +124,6 @@ public class Player : MonoBehaviour
 
     public void ChangeGun(GunManager gunManager) 
     {
-        Debug.Log("我切换了动画器名称为:" + gunManager.Gun_Animator.name);
         animator = gunManager.Gun_Animator;
     }
 
@@ -177,7 +176,7 @@ public class Player : MonoBehaviour
 
     public void Damage(int value) 
     {
-        if (isDeath)
+        if (isDeath||GameManager.Instance.IsStopGame)
             return;
         value -= GameManager.Instance.Attribute.Defense;
         value = Mathf.Clamp(value, 0, 1000);

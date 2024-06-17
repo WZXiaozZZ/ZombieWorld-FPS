@@ -24,6 +24,7 @@ public class EnemyPatrolState : EnemyFSMState
 
     public override void StateUpdate()
     {
+        system.manager.Move(Player.Instance.transform.position);
         system.manager.PlayMusic(MusicName.Walk);
         if (system.manager.Patrol()|| system.manager.isAttacked)
         {

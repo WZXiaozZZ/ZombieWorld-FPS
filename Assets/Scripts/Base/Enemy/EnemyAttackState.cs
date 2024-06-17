@@ -43,8 +43,10 @@ public class EnemyAttackState : EnemyFSMState
                 Player.Instance.Damage(system.manager.Atk);
             }
             
-        }//system.manager.PlayMusic(MusicName.Walk);
-        if(timer>2f)
+        }
+        system.manager.AttackMove(Player.Instance.transform.position);
+        //system.manager.PlayMusic(MusicName.Walk);
+        if (timer>2f)
             system.PerformTransition(Enemy_Transition.Run);
 
     }
